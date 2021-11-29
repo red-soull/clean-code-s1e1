@@ -121,7 +121,7 @@
   align-items: center;
 }
 
-li > * {
+.list__tasks {
   vertical-align: middle;
 }
 
