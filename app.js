@@ -9,8 +9,9 @@
 // Event handling, user interaction is what starts the code execution.
 
 var taskInput=document.getElementById("new-task");//Add a new task.
+    taskInput.classList.add("new-task");
 var addButton=document.getElementsByTagName("button")[0];//first button
-var incompleteTaskHolder=document.getElementById("incompleteTasks");//ul of #incompleteTasks
+var incompleteTaskHolder=document.getElementById("incomplete-tasks");//ul of #incomplete-tasks
 var completedTasksHolder=document.getElementById("completed-tasks");//completed-tasks
 
 
@@ -33,22 +34,25 @@ var createNewTaskElement=function(taskString){
     var deleteButtonImg=document.createElement("img");//delete button image
 
     label.innerText=taskString;
-    label.className='task';
+    label.className='list__tasks_label task';
 
     //Each elements, needs appending
     checkBox.type="checkbox";
+    checkBox.className="list__tasks_checkbox";
     editInput.type="text";
-    editInput.className="task";
+    editInput.className="list__tasks_input task";
 
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
-    editButton.className="edit";
+    editButton.className="key key-button edit";
 
-    deleteButton.className="delete";
+    deleteButton.className="key key-button delete";
     deleteButtonImg.src='./remove.svg';
+    deleteButtonImg.className="delete-img";
     deleteButton.appendChild(deleteButtonImg);
 
 
     //and appending.
+    listItem.className="list__tasks";
     listItem.appendChild(checkBox);
     listItem.appendChild(label);
     listItem.appendChild(editInput);
@@ -83,9 +87,11 @@ var editTask=function(){
     var listItem=this.parentNode;
 
     var editInput=listItem.querySelector('input[type=text]');
+        editInput.classList.add("edit-task");
     var label=listItem.querySelector("label");
+        label.classList.add("list__tasks_label_edit");
     var editBtn=listItem.querySelector(".edit");
-    var containsClass=listItem.classList.contains("editMode");
+    var containsClass=listItem.classList.contains("edit-mode");
     //If class of the parent is .editmode
     if(containsClass){
 
@@ -93,13 +99,18 @@ var editTask=function(){
         //label becomes the inputs value.
         label.innerText=editInput.value;
         editBtn.innerText="Edit";
+        editInput.classList.toggle("edit-task");
+        label.classList.toggle("list__tasks_label_edit");
     }else{
+        
         editInput.value=label.innerText;
         editBtn.innerText="Save";
     }
 
     //toggle .editmode on the parent.
-    listItem.classList.toggle("editMode");
+    
+    listItem.classList.toggle("edit-mode");
+    
 };
 
 
@@ -131,7 +142,7 @@ var taskIncomplete=function(){
     console.log("Incomplete Task...");
 //Mark task as incomplete.
     //When the checkbox is unchecked
-    //Append the task list item to the #incompleteTasks.
+    //Append the task list item to the #incomplete-tasks.
     var listItem=this.parentNode;
     incompleteTaskHolder.appendChild(listItem);
     bindTaskEvents(listItem,taskCompleted);
