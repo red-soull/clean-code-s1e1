@@ -106,7 +106,6 @@
   margin: 0 0 20px;
 }
 
-/* input#new-task */
 .new-task {
   width: 318px;
 }
@@ -161,11 +160,11 @@ ul#completed-tasks label {
   display: none;
 }
 
-ul li.editMode input[type="text"] {
+.edit-task {
   display: inline-block;
   width: 224px;
 }
 
-ul li.editMode label {
+.list__tasks_label_edit {
   display: none;
 }
