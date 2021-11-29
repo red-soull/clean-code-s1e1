@@ -124,11 +124,11 @@ li > * {
   vertical-align: middle;
 }
 
-li > input[type="checkbox"] {
+.list__tasks_checkbox {
   margin: 0 10px;
 }
 
-li > label {
+.list__tasks_label {
   padding-left: 10px;
   box-sizing: border-box;
   font-size: 18px;
@@ -156,7 +156,7 @@ ul#completed-tasks label {
 }
 
 /* Edit Task */
-ul li input[type="text"] {
+.list__tasks_input  {
   display: none;
 }
 
